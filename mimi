@@ -1,0 +1,783 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little World Just for You 💗</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Pacifico&display=swap');
+
+:root {
+  --pink: #f4a8c2;
+  --deep: #bd658a;
+  --cream: #fff9f1;
+  --brown: #805a60;
+  --light: #fff0f5;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--brown);
+  font-family: 'Nunito', sans-serif;
+  background: #fff4f7;
+  overflow-x: hidden;
+}
+
+button { font-family: inherit; }
+
+a { color: inherit; }
+
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.particle {
+  position: absolute;
+  bottom: -50px;
+  animation: rise linear forwards;
+  opacity: .7;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-115vh) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 45px 20px;
+  text-align: center;
+  position: relative;
+  background:
+    radial-gradient(ellipse at top left, #ffe0eb, transparent 55%),
+    radial-gradient(ellipse at bottom right, #f6e2ff, transparent 55%),
+    #fff9f1;
+}
+
+.hero-inner { max-width: 650px; }
+
+.eyebrow {
+  display: inline-block;
+  padding: 9px 17px;
+  border-radius: 50px;
+  background: white;
+  color: var(--deep);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  box-shadow: 0 5px 20px #b86c8510;
+}
+
+.hero-art {
+  font-size: clamp(72px, 17vw, 115px);
+  margin: 26px 0;
+  animation: cuddle 3s ease-in-out infinite;
+  filter: drop-shadow(0 12px 10px #bc7a8c20);
+}
+
+@keyframes cuddle {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.script {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(36px, 8vw, 60px);
+  line-height: 1.25;
+  margin: 15px 0;
+  color: #b96083;
+}
+
+h2 {
+  font-size: clamp(27px, 6vw, 39px);
+  line-height: 1.3;
+  color: #b96083;
+}
+
+p {
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+.hero p {
+  max-width: 470px;
+  margin: 18px auto;
+  color: #8e6a74;
+}
+
+.primary-btn, .soft-btn {
+  border: none;
+  border-radius: 50px;
+  padding: 15px 24px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 800;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.primary-btn {
+  background: #e98eb0;
+  color: white;
+  box-shadow: 0 7px 0 #ce7395;
+}
+
+.soft-btn {
+  background: white;
+  color: var(--deep);
+  box-shadow: 0 5px 18px #b86c8518;
+}
+
+.primary-btn:hover, .soft-btn:hover {
+  transform: translateY(-3px);
+}
+
+.primary-btn:active, .soft-btn:active {
+  transform: translateY(2px);
+}
+
+.scroll-note {
+  position: absolute;
+  bottom: 22px;
+  font-size: 12px;
+  color: #bd91a0;
+  letter-spacing: 1px;
+}
+
+section.content {
+  padding: 85px 20px;
+}
+
+.wrap {
+  width: min(100%, 760px);
+  margin: auto;
+}
+
+.center { text-align: center; }
+
+.kicker {
+  color: #c47b97;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+
+.story-card {
+  background: white;
+  border-radius: 28px;
+  padding: clamp(24px, 6vw, 42px);
+  margin: 24px 0;
+  box-shadow: 0 12px 45px #b86c8510;
+  border: 1px solid #fff;
+}
+
+.story-card p { margin-bottom: 0; }
+
+.big-emoji {
+  font-size: 55px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.soft-pink {
+  background: linear-gradient(145deg, #ffe9f0, #fff6e9);
+}
+
+.soft-purple {
+  background: linear-gradient(145deg, #f0e5ff, #fff0f5);
+}
+
+.soft-yellow {
+  background: linear-gradient(145deg, #fff2d6, #fff0f6);
+}
+
+.divider {
+  color: #e9a2ba;
+  text-align: center;
+  font-size: 24px;
+  margin: 30px 0;
+  letter-spacing: 10px;
+}
+
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.promise {
+  background: white;
+  padding: 22px 15px;
+  border-radius: 23px;
+  text-align: center;
+  box-shadow: 0 7px 25px #b86c850c;
+}
+
+.promise .emoji { font-size: 33px; }
+
+.promise h3 {
+  color: #b96083;
+  font-size: 16px;
+  margin: 10px 0 4px;
+}
+
+.promise p {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.polaroid {
+  max-width: 360px;
+  margin: 35px auto;
+  padding: 14px 14px 23px;
+  background: white;
+  border-radius: 7px;
+  transform: rotate(-2deg);
+  box-shadow: 0 15px 40px #a86a8319;
+}
+
+.polaroid-art {
+  background: linear-gradient(145deg, #ffe2ec, #f2e3ff);
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  font-size: 75px;
+  border-radius: 4px;
+}
+
+.polaroid p {
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  margin: 15px 0 0;
+  font-size: 19px;
+}
+
+.letter {
+  background: #fffdf8;
+  border: 1px solid #f4dfdf;
+  border-radius: 8px 25px 8px 25px;
+  padding: clamp(24px, 6vw, 43px);
+  box-shadow: 0 15px 45px #b86c8512;
+  position: relative;
+}
+
+.letter:before {
+  content: '♡';
+  position: absolute;
+  right: 22px;
+  top: 8px;
+  font-size: 30px;
+  color: #e5a2b8;
+}
+
+.letter p { font-size: 15px; }
+
+.letter .salutation {
+  font-family: 'Pacifico', cursive;
+  font-size: 23px;
+  color: #bb6887;
+}
+
+.signature {
+  text-align: right;
+  font-family: 'Pacifico', cursive;
+  font-size: 21px !important;
+  color: #bb6887;
+  margin-top: 30px;
+}
+
+.secret {
+  display: none;
+  margin-top: 22px;
+  animation: appear .8s ease;
+}
+
+.secret.show { display: block; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#secretMessage {
+  background: white;
+  border-radius: 24px;
+  padding: 25px;
+  margin-top: 18px;
+  border: 2px dashed #f0b4c9;
+}
+
+.final {
+  text-align: center;
+  padding: 100px 20px;
+  background:
+    radial-gradient(ellipse at top, #ffe0eb, transparent 65%),
+    #fff7f1;
+}
+
+.final .hero-art { font-size: 85px; }
+
+.final h2 {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+}
+
+footer {
+  padding: 27px 20px;
+  text-align: center;
+  background: #fff;
+  color: #c08a9d;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+@media(max-width: 420px) {
+  .promise-grid { gap: 10px; }
+  .promise { padding: 17px 10px; }
+  section.content { padding: 65px 17px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="particles" id="particles"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">A TINY SURPRISE MADE WITH LOVE ♡</span>
+
+    <div class="hero-art">🐱 🧸</div>
+
+    <h1 class="script">A little world<br>just for you</h1>
+
+    <p>
+      Somewhere between all the stars in the sky and all the
+      little things that make life beautiful, there is a person
+      who deserves something extra special.
+    </p>
+
+    <p>And today, this little world belongs to you, my girl. 🎀</p>
+
+    <button class="primary-btn" onclick="goTo('welcome')">
+      Come inside, sweetheart ♡
+    </button>
+  </div>
+
+  <div class="scroll-note">MADE FOR YOU WITH ALL MY HEART ↓</div>
+</header>
+
+<section class="content" id="welcome">
+  <div class="wrap center">
+    <div class="kicker">FIRST OF ALL</div>
+    <h2 class="script">Hi, my pretty girl! 💗</h2>
+
+    <div class="story-card soft-pink">
+      <span class="big-emoji">🐻‍❄️💌🐱</span>
+      <p>
+        A tiny teddy bear has been carrying a little letter all
+        day, and a fluffy kitten has been guarding it with her
+        whole tiny heart.
+      </p>
+      <p>
+        They told me they have something to say to you.
+        Apparently, it is very important. They even put on
+        their cutest faces. 🥹
+      </p>
+      <p>
+        So get comfortable, imagine the softest blanket,
+        hold an imaginary teddy bear, and take your time here.
+        There is no rush. This little place is yours.
+      </p>
+    </div>
+
+    <div class="divider">♡ ✿ ♡</div>
+
+    <div class="kicker">A LITTLE REMINDER</div>
+    <h2 class="script">You are special, okay?</h2>
+
+    <div class="story-card">
+      <span class="big-emoji">🌷🫶🏻</span>
+      <p>
+        Not because you have to be perfect. Not because you
+        always have to smile. Not because you must make everyone
+        happy.
+      </p>
+      <p>
+        You are special because you are <em>you</em>. With your
+        own little habits, your own thoughts, your own dreams,
+        your own way of seeing the world.
+      </p>
+      <p>
+        Even on the days when you feel a little tired, quiet,
+        messy, or not like yourself, you are still someone
+        worth loving gently.
+      </p>
+      <p>
+        You don't have to earn every bit of sweetness in the
+        world, sweetheart. Sometimes you deserve it just because
+        you're here. 💕
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content soft-pink">
+  <div class="wrap center">
+    <div class="kicker">THE TEDDY BEAR'S PROMISES</div>
+    <h2 class="script">A few little things for you 🧸</h2>
+
+    <p>Our teddy bear wanted to make you a promise list.</p>
+
+    <div class="promise-grid">
+      <div class="promise">
+        <div class="emoji">🤍</div>
+        <h3>Gentleness</h3>
+        <p>You deserve kindness, patience, and a heart that listens.</p>
+      </div>
+
+      <div class="promise">
+        <div class="emoji">🌸</div>
+        <h3>Little joys</h3>
+        <p>May your ordinary days surprise you with beautiful things.</p>
+      </div>
+
+      <div class="promise">
+        <div class="emoji">🫂</div>
+        <h3>Warm hugs</h3>
+        <p>May you always find comfort when the world feels too loud.</p>
+      </div>
+
+      <div class="promise">
+        <div class="emoji">✨</div>
+        <h3>Big dreams</h3>
+        <p>May you keep growing into the person you want to be.</p>
+      </div>
+
+      <div class="promise">
+        <div class="emoji">🐱</div>
+        <h3>Cat energy</h3>
+        <p>Maximum coziness, tiny paws, and absolutely no bad vibes.</p>
+      </div>
+
+      <div class="promise">
+        <div class="emoji">💗</div>
+        <h3>Real love</h3>
+        <p>Love that makes you feel safe, valued, and appreciated.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap center">
+    <div class="kicker">A VERY IMPORTANT ANNOUNCEMENT</div>
+    <h2 class="script">The official cuteness department 🐱</h2>
+
+    <div class="polaroid">
+      <div class="polaroid-art">🐱💐🧸</div>
+      <p>Certified cutie. No arguments allowed. ♡</p>
+    </div>
+
+    <div class="story-card soft-yellow">
+      <p>
+        Dear Miss Pretty Face,
+      </p>
+      <p>
+        After a very serious meeting involving one sleepy kitten,
+        two teddy bears, and an unreasonable amount of cookies,
+        the department has reached a unanimous decision.
+      </p>
+      <p>
+        You are hereby awarded:
+      </p>
+      <p>
+        🎀 One thousand forehead kisses<br>
+        🧸 Unlimited imaginary teddy bear cuddles<br>
+        🍓 A lifetime supply of strawberry desserts<br>
+        🐱 Permission to be as cute as you want<br>
+        💌 One reminder whenever you need it: you matter
+      </p>
+      <p>
+        This certificate cannot expire. It has been stamped
+        with a tiny paw print. 🐾
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content soft-purple">
+  <div class="wrap">
+    <div class="center">
+      <div class="kicker">A LETTER FROM MY HEART</div>
+      <h2 class="script">For you, my sweetheart 💌</h2>
+    </div>
+
+    <div class="letter">
+      <p class="salutation">My sweetest girl,</p>
+
+      <p>
+        I don't always know how to put everything I feel into
+        words. Sometimes a thousand thoughts can live in my
+        heart, and somehow the simplest things are the hardest
+        to explain. But today, I wanted to try.
+      </p>
+
+      <p>
+        If I could give you one gift, I would let you see
+        yourself through my eyes for just a little while.
+        I wish you could see all the little things that make
+        you wonderful, all the details you might not even
+        notice about yourself, and all the reasons someone
+        could smile just by thinking about you.
+      </p>
+
+      <p>
+        I would show you that you don't need to be perfect
+        to be precious. You don't have to look beautiful every
+        second, say the right thing every time, or pretend
+        that everything is okay when it isn't.
+      </p>
+
+      <p>
+        You can be sleepy, silly, quiet, dramatic, playful,
+        emotional, or completely random. You can tell me about
+        your day, talk about something that makes absolutely
+        no sense, send me the cutest cat picture you can find,
+        or simply sit quietly. Little moments can mean so much.
+      </p>
+
+      <p>
+        I hope life gives you mornings that feel peaceful,
+        nights that feel safe, dreams that excite you, and
+        people who appreciate the beautiful person you are.
+        I hope you never feel that you must make yourself
+        smaller to be loved.
+      </p>
+
+      <p>
+        And when a day doesn't go the way you hoped, I hope
+        you remember that one difficult day doesn't define
+        your whole story. You are allowed to rest. You are
+        allowed to start again. You are allowed to take your
+        time.
+      </p>
+
+      <p>
+        If I were next to you right now, I would probably
+        give you the softest teddy bear I could find, let you
+        choose its name, and then pretend not to be jealous
+        when you cuddle it more than me. 😭🧸
+      </p>
+
+      <p>
+        Then I would probably find us a fluffy kitten, give
+        it a ridiculous little name, and watch it fall asleep
+        somewhere it absolutely shouldn't. And we'd have to
+        act like it was the most important event in the world.
+        Because honestly? It would be. 🐈
+      </p>
+
+      <p>
+        I can't promise that every day will be perfect.
+        I can't magically remove every worry or make the whole
+        world gentle. But I can hope for beautiful things for
+        you, cheer for your happiness, and keep finding little
+        ways to remind you that you are appreciated.
+      </p>
+
+      <p>
+        Thank you for being the person you are. Thank you for
+        the little moments, the smiles, the silly things, and
+        all the memories that make life feel warmer.
+      </p>
+
+      <p>
+        If this little website makes you smile even for a few
+        seconds, then its mission is complete. Somewhere, a
+        tiny kitten is doing a happy dance, and a teddy bear
+        is crying because its plan actually worked. 🥹💗
+      </p>
+
+      <p>
+        Take care of that lovely heart of yours, okay?
+        Be gentle with yourself. Eat something delicious,
+        get some rest, chase your dreams, and never forget
+        that you deserve good things too.
+      </p>
+
+      <p class="signature">
+        With all my love,<br>
+        MoMo 🧸💗
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap center">
+    <div class="kicker">ONE LAST LITTLE SURPRISE</div>
+    <h2 class="script">Psst... come closer 🤫</h2>
+
+    <div class="story-card soft-pink">
+      <div class="hero-art">🐱🔐🧸</div>
+      <p>
+        The kitten has been hiding one last message under
+        the teddy bear's little blanket.
+      </p>
+      <p>
+        The bear says you can open it whenever you're ready.
+      </p>
+      <button class="primary-btn" onclick="revealSecret()">
+        Open the tiny secret 💌
+      </button>
+
+      <div class="secret" id="secret">
+        <div id="secretMessage">
+          <div style="font-size:48px;">💗🐾💗</div>
+          <h2 class="script">You make this world sweeter.</h2>
+          <p>
+            Out of all the things this little website could say,
+            it wanted you to remember this:
+          </p>
+          <p>
+            You are not just a pretty face, not just a name,
+            and not just a passing moment. You are a whole
+            person with a beautiful story still unfolding.
+          </p>
+          <p>
+            I hope your future is full of the kind of happiness
+            that stays, the kind of love that feels peaceful,
+            and the kind of memories that make you smile years
+            later.
+          </p>
+          <p>
+            And whenever you see a tiny cat or a teddy bear,
+            maybe you'll remember this little corner of the
+            internet that was made just to make you smile. 🥹
+          </p>
+          <p class="script" style="font-size:22px;">
+            You're someone's favorite little human. ♡
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="hero-art">🐱💗🧸</div>
+    <p class="kicker">THE END OF OUR LITTLE STORY</p>
+    <h2>A thousand tiny hugs for you</h2>
+    <p>
+      If happiness were a garden, I hope yours would always
+      have flowers. If comfort were a place, I hope you'd
+      always find a soft corner to rest. And if love could
+      be sent as little hearts, this page would never stop
+      sending them your way. 💕
+    </p>
+    <p class="script" style="font-size:24px;color:#bd658a;">
+      Stay soft, stay lovely, stay you. ♡
+    </p>
+    <button class="soft-btn" onclick="backToTop()">
+      Read our little story again ↺
+    </button>
+  </div>
+</section>
+
+<footer>
+  MADE WITH LOVE, A LITTLE PINK, AND TOO MANY CATS ♡
+</footer>
+
+<script>
+const CONFIG = {
+  herName: "MiMi",
+  yourName: "MoMo"
+};
+
+// Replace names throughout the page.
+document.title = "A Little World for " + CONFIG.herName + " 💗";
+
+document.querySelectorAll(".salutation").forEach(el => {
+  el.textContent = "My sweetest " + CONFIG.herName + ",";
+});
+
+document.querySelectorAll(".signature").forEach(el => {
+  el.innerHTML = "With all my love,<br>" + CONFIG.yourName + " 🧸💗";
+});
+
+function goTo(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function revealSecret() {
+  document.getElementById("secret").classList.add("show");
+  document.getElementById("secret").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+  burstHearts();
+}
+
+function backToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function burstHearts() {
+  const emojis = ["💗", "💕", "💖", "🐾", "🌸", "✨", "🎀"];
+
+  for (let i = 0; i < 22; i++) {
+    const el = document.createElement("span");
+    el.className = "particle";
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = (16 + Math.random() * 22) + "px";
+    el.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.getElementById("particles").appendChild(el);
+    setTimeout(() => el.remove(), 8500);
+  }
+}
+
+// Gentle floating hearts throughout the visit.
+setInterval(() => {
+  const el = document.createElement("span");
+  el.className = "particle";
+  el.textContent = ["♡", "💗", "✿", "✨"][
+    Math.floor(Math.random() * 4)
+  ];
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.fontSize = (12 + Math.random() * 18) + "px";
+  el.style.animationDuration = (8 + Math.random() * 6) + "s";
+
+  document.getElementById("particles").appendChild(el);
+  setTimeout(() => el.remove(), 15000);
+}, 1400);
+</script>
+
+</body>
+</html>
